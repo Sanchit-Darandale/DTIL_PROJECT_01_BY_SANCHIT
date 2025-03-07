@@ -57,7 +57,7 @@
       width: 100%;
       border-collapse: collapse;
       margin-top: 10px;
-      min-width: 600px;
+      min-width: 600px; /* Ensures the table maintains structure */
     }
     th, td {
       padding: 10px;
@@ -113,11 +113,12 @@
     .tracker-title {
       grid-column: 2;
     }
-    /* Increased height for logout button and set its width */
+    /* Adjusted logout button: smaller horizontal padding and fixed height */
     .logout-btn {
       grid-column: 3;
       justify-self: end;
-      padding: 10px 15px;
+      padding: 8px 10px;
+      font-size: 0.9em;
     }
     /* Responsive styles */
     @media (max-width: 600px) {
@@ -155,10 +156,11 @@
     <form id="login-form">
       <input type="text" id="login-username" placeholder="Username" required />
       <input type="password" id="login-password" placeholder="Password" required />
-      <!-- Show password toggle: Text then checkbox -->
-      <label style="display:inline-block; font-size:0.9em; margin-top:5px;">
-        Show Password (checkbox) <input type="checkbox" id="toggle-password" />
-      </label>
+      <!-- Separate label and checkbox for "Show Password" -->
+      <div style="margin-top:5px;">
+        <label style="font-size:0.9em;">Show Password</label>
+        <input type="checkbox" id="toggle-password" style="vertical-align: middle; margin-left: 5px;" />
+      </div>
       <button type="submit">Login</button>
     </form>
     <p style="text-align:center;">Don't have an account? <a href="#" id="show-register">Register here</a></p>
@@ -167,10 +169,11 @@
       <form id="register-form">
         <input type="text" id="register-username" placeholder="Username" required />
         <input type="password" id="register-password" placeholder="Password" required />
-        <!-- Show password toggle for registration: Text then checkbox -->
-        <label style="display:inline-block; font-size:0.9em; margin-top:5px;">
-          Show Password (checkbox) <input type="checkbox" id="toggle-reg-password" />
-        </label>
+        <!-- Separate label and checkbox for registration "Show Password" -->
+        <div style="margin-top:5px;">
+          <label style="font-size:0.9em;">Show Password</label>
+          <input type="checkbox" id="toggle-reg-password" style="vertical-align: middle; margin-left: 5px;" />
+        </div>
         <button type="submit">Register</button>
       </form>
     </div>
@@ -442,4 +445,3 @@
   </script>
 </body>
 </html>
-  
