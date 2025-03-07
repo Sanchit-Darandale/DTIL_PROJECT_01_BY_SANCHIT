@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Expense Tracker with Login, Budget, Date/Time & Monthly Filter</title>
+  <title>Advance Expense Tracker By Sanchit ♥️</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -28,11 +28,11 @@
     h1, h2 {
       text-align: center;
     }
-    /* Make the tracker title bold */
+    /* Make the tracker title bold and left aligned */
     .tracker-title {
       font-weight: bold;
       font-size: 1.8em;
-      text-align: left; /* Changed alignment to left */
+      text-align: left;
     }
     input, select, button {
       width: 100%;
@@ -110,9 +110,17 @@
       align-items: center;
       margin-bottom: 20px;
     }
+    /* Smaller logout button */
     .logout-btn {
-      padding: 8px 10px;
-      font-size: 0.9em;
+      padding: 5px 8px;
+      font-size: 0.8em;
+    }
+    /* Style for see password toggle button */
+    .toggle-pwd-btn {
+      width: auto;
+      padding: 5px 8px;
+      font-size: 0.8em;
+      margin-top: 5px;
     }
     /* Responsive styles */
     @media (max-width: 600px) {
@@ -150,13 +158,8 @@
     <form id="login-form">
       <input type="text" id="login-username" placeholder="Username" required />
       <input type="password" id="login-password" placeholder="Password" required />
-      <!-- Show password checkbox below the password input, aligned to left -->
-      <div style="text-align: left; margin-top:5px;">
-        <label style="font-size:0.9em;">
-          <input type="checkbox" id="toggle-password" style="vertical-align: middle; margin-right: 5px;">
-          Show Password
-        </label>
-      </div>
+      <!-- See Password button below password input -->
+      <button type="button" id="toggle-password-btn" class="toggle-pwd-btn">See Password</button>
       <button type="submit">Login</button>
     </form>
     <p style="text-align:center;">Don't have an account? <a href="#" id="show-register">Register here</a></p>
@@ -165,13 +168,8 @@
       <form id="register-form">
         <input type="text" id="register-username" placeholder="Username" required />
         <input type="password" id="register-password" placeholder="Password" required />
-        <!-- Show password checkbox for registration below the password input -->
-        <div style="text-align: left; margin-top:5px;">
-          <label style="font-size:0.9em;">
-            <input type="checkbox" id="toggle-reg-password" style="vertical-align: middle; margin-right: 5px;">
-            Show Password
-          </label>
-        </div>
+        <!-- See Password button for registration -->
+        <button type="button" id="toggle-reg-password-btn" class="toggle-pwd-btn">See Password</button>
         <button type="submit">Register</button>
       </form>
     </div>
@@ -306,10 +304,16 @@
       }
     });
 
-    // Toggle "Show Password" for login
-    document.getElementById('toggle-password').addEventListener('change', function() {
+    // Toggle "See Password" for login using a button
+    document.getElementById('toggle-password-btn').addEventListener('click', function() {
       const pwdField = document.getElementById('login-password');
-      pwdField.type = this.checked ? 'text' : 'password';
+      if (pwdField.type === 'password') {
+        pwdField.type = 'text';
+        this.textContent = 'Hide Password';
+      } else {
+        pwdField.type = 'password';
+        this.textContent = 'See Password';
+      }
     });
 
     // Toggle registration section
@@ -335,10 +339,16 @@
       }
     });
 
-    // Toggle "Show Password" for registration
-    document.getElementById('toggle-reg-password').addEventListener('change', function() {
+    // Toggle "See Password" for registration using a button
+    document.getElementById('toggle-reg-password-btn').addEventListener('click', function() {
       const regPwdField = document.getElementById('register-password');
-      regPwdField.type = this.checked ? 'text' : 'password';
+      if (regPwdField.type === 'password') {
+        regPwdField.type = 'text';
+        this.textContent = 'Hide Password';
+      } else {
+        regPwdField.type = 'password';
+        this.textContent = 'See Password';
+      }
     });
 
     // Logout button handling
@@ -439,6 +449,5 @@
       showLogin();
     }
   </script>
-</body>
-</html>
-              
+</body> 
+</html>  
