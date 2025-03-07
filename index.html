@@ -28,10 +28,10 @@
     h1, h2 {
       text-align: center;
     }
-    /* Make the tracker title bold and left aligned */
+    /* Tracker title: bold, larger (2em) and left aligned */
     .tracker-title {
       font-weight: bold;
-      font-size: 1.8em;
+      font-size: 2em;
       text-align: left;
     }
     input, select, button {
@@ -46,6 +46,7 @@
       background-color: #333; 
       color: #fff; 
       cursor: pointer; 
+      border: none;
     }
     button:hover { 
       background-color: #555; 
@@ -57,7 +58,7 @@
       width: 100%;
       border-collapse: collapse;
       margin-top: 10px;
-      min-width: 600px; /* Ensures the table maintains structure */
+      min-width: 600px;
     }
     th, td {
       padding: 10px;
@@ -110,14 +111,13 @@
       align-items: center;
       margin-bottom: 20px;
     }
-    /* Logout button: square style using an icon */
+    /* Logout button: square button with fixed size, using an icon */
     .logout-btn {
       width: 35px;
-      height: 35px;
-      padding: 0;
+      height: 20px;
       font-size: 1em;
       text-align: center;
-      line-height: 35px;
+      line-height: 40px;
     }
     /* Style for see password toggle button */
     .toggle-pwd-btn {
@@ -273,7 +273,7 @@
     }
 
     // User login and registration
-    let users = getStoredData('users', {}); // Users stored as an object with username keys
+    let users = getStoredData('users', {});
     let currentUser = localStorage.getItem('currentUser') || null;
 
     // Show login view
@@ -287,7 +287,6 @@
       document.getElementById('login-container').style.display = 'none';
       document.getElementById('tracker-container').style.display = 'block';
       document.getElementById('welcome-message').innerText = 'Welcome, ' + currentUser;
-      // Load user-specific expenses and budget
       expenses = getStoredData('expenses_' + currentUser, []);
       budget = parseFloat(localStorage.getItem('budget_' + currentUser)) || 0;
       updateBudgetDisplay();
@@ -365,20 +364,18 @@
     });
 
     // Expense Tracker functionality
-    let expenses = getStoredData('expenses_' + currentUser, []); // User-specific expenses
+    let expenses = getStoredData('expenses_' + currentUser, []);
     let budget = parseFloat(localStorage.getItem('budget_' + currentUser)) || 0;
     
-    // Get month filter element and add event listener
     const monthFilter = document.getElementById('month-filter');
     monthFilter.addEventListener('change', updateTable);
 
     function updateTable() {
       const tbody = document.querySelector('#expense-table tbody');
-      tbody.innerHTML = ''; // Clear existing rows
+      tbody.innerHTML = '';
       let total = 0;
       const selectedMonth = monthFilter.value;
       expenses.forEach((expense, index) => {
-        // Filter by month if a specific month is selected
         if (selectedMonth !== "All" && expense.month !== selectedMonth) return;
         total += parseFloat(expense.amount);
         const tr = document.createElement('tr');
@@ -401,13 +398,11 @@
       updateTable();
     }
 
-    // Handle expense form submission
     document.getElementById('expense-form').addEventListener('submit', function(e) {
       e.preventDefault();
       const description = document.getElementById('description').value;
       const amount = document.getElementById('amount').value;
       const category = document.getElementById('category').value;
-      // Capture current date & time and month as a string
       const now = new Date();
       const dateTime = now.toLocaleString();
       const month = now.toLocaleString('default', { month: 'long' });
@@ -417,7 +412,6 @@
       this.reset();
     });
 
-    // Budget functionality
     document.getElementById('set-budget-btn').addEventListener('click', function() {
       const budgetInput = document.getElementById('budget-input').value;
       budget = parseFloat(budgetInput);
@@ -446,7 +440,6 @@
       }
     }
 
-    // Initialize view based on login status
     if (currentUser) {
       showTracker();
     } else {
@@ -454,5 +447,5 @@
     }
   </script>
 </body>
-</html>
-      
+          </html>
+          
