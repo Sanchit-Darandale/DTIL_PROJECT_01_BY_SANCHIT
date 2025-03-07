@@ -133,6 +133,7 @@
     <form id="login-form">
       <input type="text" id="login-username" placeholder="Username" required />
       <input type="password" id="login-password" placeholder="Password" required />
+      <!-- Show password toggle with checkbox first -->
       <label style="display:inline-block; font-size:0.9em; margin-top:5px;">
         <input type="checkbox" id="toggle-password" /> Show Password
       </label>
@@ -144,16 +145,21 @@
       <form id="register-form">
         <input type="text" id="register-username" placeholder="Username" required />
         <input type="password" id="register-password" placeholder="Password" required />
+        <!-- Show password toggle for registration form -->
+        <label style="display:inline-block; font-size:0.9em; margin-top:5px;">
+          <input type="checkbox" id="toggle-reg-password" /> Show Password
+        </label>
         <button type="submit">Register</button>
       </form>
     </div>
   </div>
 
-  <!-- Expense Tracker Container -->
+  <!-- Expense Tracker Container (after login) -->
   <div class="container" id="tracker-container">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
+    <!-- Centered Title with Logout Button at Top Right -->
+    <div style="text-align: center; position: relative;">
       <h1>Expense Tracker</h1>
-      <button id="logout-btn" style="width: auto; padding: 5px 10px;">Logout</button>
+      <button id="logout-btn" style="position: absolute; top: 10px; right: 10px; padding: 5px 10px;">Logout</button>
     </div>
     <div id="welcome-message" style="text-align:center; margin-bottom: 10px;"></div>
     <!-- Budget Section -->
@@ -276,7 +282,7 @@
       }
     });
 
-    // Toggle "Show Password" checkbox
+    // Toggle "Show Password" for login
     document.getElementById('toggle-password').addEventListener('change', function() {
       const pwdField = document.getElementById('login-password');
       pwdField.type = this.checked ? 'text' : 'password';
@@ -303,6 +309,12 @@
         document.getElementById('register-form').reset();
         document.getElementById('register-section').style.display = 'none';
       }
+    });
+
+    // Toggle "Show Password" for registration
+    document.getElementById('toggle-reg-password').addEventListener('change', function() {
+      const regPwdField = document.getElementById('register-password');
+      regPwdField.type = this.checked ? 'text' : 'password';
     });
 
     // Logout button handling
@@ -405,4 +417,4 @@
   </script>
 </body>
 </html>
-  
+                        
