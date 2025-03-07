@@ -44,10 +44,14 @@
     button:hover { 
       background-color: #555; 
     }
+    .table-wrapper {
+      overflow-x: auto;
+    }
     table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 10px;
+      min-width: 600px; /* Ensures the table maintains structure */
     }
     th, td {
       padding: 10px;
@@ -83,6 +87,29 @@
     #budget-warning {
       color: red;
       display: none;
+    }
+    /* Responsive styles */
+    @media (max-width: 600px) {
+      .container {
+        width: 95%;
+        margin: 20px auto;
+        padding: 10px;
+      }
+      h1, h2 {
+        font-size: 1.5em;
+      }
+      input, select, button {
+        padding: 8px;
+        margin: 5px 0;
+        font-size: 0.9em;
+      }
+      .total {
+        font-size: 1em;
+        margin-top: 10px;
+      }
+      table {
+        min-width: 100%;
+      }
     }
   </style>
   <!-- Font Awesome for the GitHub icon -->
@@ -150,21 +177,23 @@
       </select>
       <button type="submit">Add Expense</button>
     </form>
-    <!-- Table to display expenses -->
-    <table id="expense-table">
-      <thead>
-        <tr>
-          <th>Date & Time</th>
-          <th>Description</th>
-          <th>Amount</th>
-          <th>Category</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Expenses will be dynamically inserted here -->
-      </tbody>
-    </table>
+    <!-- Table Wrapper to allow horizontal scrolling -->
+    <div class="table-wrapper">
+      <table id="expense-table">
+        <thead>
+          <tr>
+            <th>Date & Time</th>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Category</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Expenses will be dynamically inserted here -->
+        </tbody>
+      </table>
+    </div>
     <!-- Display total expense amount -->
     <div class="total" id="total-amount">Total: ₹0.00</div>
   </div>
